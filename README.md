@@ -1,20 +1,64 @@
-# BrandGuard AI — Simple UI Prototype
+# BrandGuard AI 🛡️
 
-A beginner-friendly, responsive frontend prototype for reviewing marketing copy against example brand rules.
+**AI-powered brand governance and marketing content compliance.**
 
-## Run it
-1. Download or clone this folder.
-2. Open `index.html` in a modern browser.
-3. For the best experience, use a local development server (for example, VS Code Live Server).
+Review marketing copy, identify potentially misleading or unsupported claims, and get safer suggested alternatives before publishing.
 
-## Project structure
-- `index.html` — page structure and content
-- `css/style.css` — layout, colors, responsive styling
-- `js/app.js` — navigation, rule-based checks, suggestions, contrast checker, demo approval history
+### 🚀 Live Demo
 
-## Current limitations
-- This is a frontend demo. It has no backend, user accounts, database, or real AI model.
-- Compliance checks use simple JavaScript rules, not an AI API or legal verification.
-- Dashboard and analytics values are illustrative sample data.
-- Demo history is held in browser memory and may reset when the page is refreshed.
-- Do not put API keys or passwords in frontend files.
+**[Open BrandGuard AI](https://brandguard-ai-nvfs.onrender.com)**
+
+> The live demo runs on Render's free tier and may take a little time to wake up after inactivity.
+
+### ✨ Features
+
+- AI-assisted marketing content review
+- Risk and severity labels for flagged claims
+- Explanations for detected issues
+- Suggested alternative wording
+- Apply suggestions directly to your draft
+- Local rule checks when AI review is unavailable
+- API key kept on the server, not in browser code
+
+### 🧰 Tech Stack
+
+- Node.js
+- Express
+- Groq API — `openai/gpt-oss-20b`
+- HTML, CSS and JavaScript
+- Node.js test runner
+
+### 💻 Run Locally
+
+1. Clone this repository.
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Create a `.env` file using `.env.example` as a reference.
+4. Add your `GROQ_API_KEY` to `.env`.
+5. Start the server:
+
+   ```bash
+   npm start
+   ```
+
+6. Open `http://localhost:3000`.
+
+### 🧪 Tests
+
+Run the automated test suite:
+
+```bash
+npm test
+```
+
+### 🔐 Security & Claim Verification
+
+API keys should be stored in environment variables and never committed to GitHub. AI-generated findings are review suggestions, not legal advice or proof that a claim is false or verified.
+
+### 📌 Project Status
+
+A deployed working prototype. AI output and suggested wording should be reviewed before publication.
