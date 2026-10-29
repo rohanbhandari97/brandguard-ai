@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7fb">
+  <title>BrandGuard AI — Brand review made simple</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="BrandGuard AI home" data-view="workspace">
+        <span class="brand-mark">✓</span>
+        <span><strong>BrandGuard</strong><small>AI brand workspace</small></span>
+      </a>
+      <div class="nav-label">WORKSPACE</div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-item active" data-view="workspace"><span class="nav-icon">✎</span><span>Review content</span></button>
+        <button class="nav-item" data-view="dashboard"><span class="nav-icon">▦</span><span>Overview</span></button>
+        <button class="nav-item" data-view="guidelines"><span class="nav-icon">▤</span><span>Brand guidelines</span></button>
+        <button class="nav-item" data-view="approvals"><span class="nav-icon">✓</span><span>Approvals & history</span></button>
+        <button class="nav-item" data-view="analytics"><span class="nav-icon">▥</span><span>Insights</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="help-card">
+          <span class="help-icon">✦</span>
+          <strong>Keep it on-brand</strong>
+          <p>Review first. Publish only after a person approves.</p>
+        </div>
+        <div class="profile">
+          <span class="avatar">R</span>
+          <span class="profile-copy"><strong>Rohan</strong><small>Workspace owner</small></span>
+          <span class="more">•••</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobile-menu" aria-label="Toggle navigation">☰</button>
+        <div class="breadcrumbs"><span>Brand workspace</span><span class="crumb-sep">/</span><strong id="breadcrumb-current">Review content</strong></div>
+        <div class="top-actions">
+          <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch theme"><span id="theme-icon">☾</span><span class="theme-toggle-label">Dark mode</span></button>
+          <span class="status-pill" id="status-badge"><span class="status-dot"></span><span id="status-text">Draft · Not checked</span></span>
+          <label class="role-control"><span>Role</span>
+            <select id="role-select" aria-label="Select demo role">
+              <option value="creator">Creator</option><option value="manager">Brand manager</option><option value="admin">Admin</option>
+            </select>
+          </label>
+          <button class="button button-primary" id="run-scan"><span>✦</span> Check content</button>
+        </div>
+      </header>
+
+      <section class="view active-view" id="view-workspace">
+        <div class="page-heading">
+          <div><p class="eyebrow">CONTENT REVIEW</p><h1>Make every message feel like your brand.</h1><p class="page-subtitle">Paste your copy, check it against your guidelines, and fix issues before publishing.</p></div>
+          <button class="button button-secondary" id="load-sample">Try a sample <span>↗</span></button>
+        </div>
+        <div class="workspace-grid">
+          <section class="panel editor-panel">
+            <div class="panel-heading">
+              <div><h2>Your content</h2><p>Start with a draft or paste existing copy.</p></div>
+              <button class="text-button" id="clear-editor">Clear draft</button>
+            </div>
+            <div class="field-row">
+              <label for="campaign-name">Campaign name</label>
+              <input id="campaign-name" type="text" value="Product launch campaign" placeholder="e.g. Product launch">
+            </div>
+            <div class="field-row">
+              <label for="channel-select">Where will this appear?</label>
+              <select id="channel-select"><option>LinkedIn / social media</option><option>Website banner</option><option>Email campaign</option><option>Product page</option><option>Press release</option></select>
+            </div>
+            <div class="editor-wrap">
+              <div class="editor-toolbar"><span class="editor-file-icon">T</span><span>Draft copy</span><span class="toolbar-spacer"></span><span id="word-count">0 words</span><span class="count-separator">·</span><span id="char-count">0 characters</span></div>
+              <textarea id="content-editor" spellcheck="true" placeholder="Write or paste your marketing copy here…">Buy now! Our product is guaranteed to be the No. 1 solution in India, delivering 100% results.</textarea>
+              <div class="editor-footer"><span class="local-rule"><span class="green-dot"></span> Brand rules ready</span><span class="hint">Drafts are sent to your BrandGuard server for review. No API keys in the browser.</span></div>
+            </div>
+            <div class="editor-actions">
+              <button class="button button-secondary" id="contrast-toggle">Check text contrast</button>
+              <button class="button button-secondary" id="suggest-rewrite">Suggest safer rewrite</button>
+              <button class="button button-primary" id="run-scan-bottom">Check my content <span>→</span></button>
+            </div>
+            <div class="contrast-panel hidden" id="contrast-panel">
+              <div class="contrast-heading"><div><h3>Color contrast checker</h3><p>Check whether text is readable against its background.</p></div><button class="icon-button" id="close-contrast" aria-label="Close contrast checker">×</button></div>
+              <div class="contrast-controls">
+                <label>Background <span><input type="color" id="bg-color-picker" value="#ffffff"><input type="text" id="bg-color-text" value="#FFFFFF" maxlength="7"></span></label>
+                <label>Text color <span><input type="color" id="fg-color-picker" value="#20243a"><input type="text" id="fg-color-text" value="#20243A" maxlength="7"></span></label>
+                <div class="contrast-preview" id="contrast-preview"><strong>Readable brand message</strong><small id="contrast-ratio-text">Contrast ratio: 15.2:1</small><span id="contrast-badge" class="mini-badge pass">WCAG AAA</span></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel findings-panel">
+            <div class="panel-heading findings-heading">
+              <div><h2>Review results <span class="count-badge" id="findings-count-badge">3</span></h2><p>Clear explanations and suggested fixes.</p></div>
+              <span class="scan-state" id="scan-state">Ready to check</span>
+            </div>
+            <div class="first-scan" id="first-scan">
+              <div class="first-scan-icon">✦</div><h3>Ready when you are</h3><p>Check your content to find risky claims, aggressive wording, and other brand issues.</p>
+              <button class="button button-primary" id="empty-scan">Check content</button>
+            </div>
+            <div class="findings-list" id="findings-container"></div>
+            <div class="human-note"><span>ⓘ</span><p><strong>People stay in control.</strong> Findings are AI-assisted starting points. Claims are not treated as verified unless checked against an approved source. Review every change before publishing.</p></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="view" id="view-dashboard">
+        <div class="page-heading"><div><p class="eyebrow">OVERVIEW</p><h1>Your brand at a glance.</h1><p class="page-subtitle">A quick snapshot of your review workflow. Figures below are illustrative demo data.</p></div><button class="button button-secondary" data-goto="workspace">Review content →</button></div>
+        <div class="stats-grid">
+          <article class="stat-card"><span class="stat-icon purple">✓</span><p>Compliance score</p><strong>78%</strong><small class="positive">Demo metric · +4% this week</small><div class="progress"><span style="width:78%"></span></div></article>
+          <article class="stat-card"><span class="stat-icon blue">▤</span><p>Content reviewed</p><strong>428</strong><small>Illustrative quarterly total</small></article>
+          <article class="stat-card"><span class="stat-icon red">!</span><p>Issues flagged</p><strong>142</strong><small>Example demo metric</small></article>
+          <article class="stat-card"><span class="stat-icon amber">◷</span><p>Awaiting approval</p><strong id="pending-count">1</strong><small>Requires human review</small></article>
+        </div>
+        <section class="panel simple-panel"><div class="panel-heading"><div><h2>Recent review activity</h2><p>Example items to show how a team queue could look.</p></div></div><div class="table-wrap"><table><thead><tr><th>Content</th><th>Owner</th><th>Result</th><th>Status</th><th></th></tr></thead><tbody><tr><td><strong>Product launch campaign</strong><small>LinkedIn / social media</small></td><td>You</td><td><span class="tag tag-amber">Needs review</span></td><td>In progress</td><td><button class="text-button" data-goto="workspace">Open →</button></td></tr><tr><td><strong>Website headline</strong><small>Website banner</small></td><td>Marketing team</td><td><span class="tag tag-green">Passed</span></td><td>Approved</td><td><span class="muted">Demo</span></td></tr><tr><td><strong>Customer newsletter</strong><small>Email campaign</small></td><td>Marketing team</td><td><span class="tag tag-green">Passed</span></td><td>Approved</td><td><span class="muted">Demo</span></td></tr></tbody></table></div></section>
+      </section>
+
+      <section class="view" id="view-guidelines">
+        <div class="page-heading"><div><p class="eyebrow">YOUR BRAND PLAYBOOK</p><h1>Simple rules. Consistent content.</h1><p class="page-subtitle">These example guidelines are sent with each review request.</p></div><button class="button button-secondary" id="add-rule">＋ Add a rule</button></div>
+        <div class="guideline-grid">
+          <article class="panel guideline-card"><span class="guideline-icon purple">✦</span><h2>Voice & tone</h2><p>Be helpful, confident, empathetic, and customer-first.</p><div class="rule-example"><small>AVOID</small><strong>“Buy now!” or “Hurry, act now!”</strong></div><div class="rule-example safe"><small>TRY INSTEAD</small><strong>“Explore a solution designed for your goals.”</strong></div></article>
+          <article class="panel guideline-card"><span class="guideline-icon red">!</span><h2>Claims we can prove</h2><p>Do not make absolute promises or market-ranking claims without approved evidence.</p><div class="rule-example"><small>AVOID</small><strong>“No. 1 solution” · “100% results”</strong></div><div class="rule-example safe"><small>TRY INSTEAD</small><strong>Use a specific, substantiated benefit.</strong></div></article>
+          <article class="panel guideline-card"><span class="guideline-icon blue">◐</span><h2>Accessible colors</h2><p>Text should remain easy to read across backgrounds and devices.</p><div class="rule-example"><small>STANDARD</small><strong>4.5:1 contrast for normal text</strong></div><button class="text-button" data-goto="workspace" id="guideline-contrast">Open contrast checker →</button></article>
+          <article class="panel guideline-card"><span class="guideline-icon green">✓</span><h2>Human approval</h2><p>Automated checks help people review content. They do not publish content automatically.</p><div class="rule-example safe"><small>WORKFLOW</small><strong>Draft → Check → Review → Approve</strong></div></article>
+        </div>
+      </section>
+
+      <section class="view" id="view-approvals">
+        <div class="page-heading"><div><p class="eyebrow">REVIEW HISTORY</p><h1>Decisions, all in one place.</h1><p class="page-subtitle">A simple local activity log for this demo session.</p></div><button class="button button-secondary" id="export-audit">Export history ↓</button></div>
+        <section class="panel approvals-panel"><div class="panel-heading"><div><h2>Latest submission</h2><p id="approval-description">Review the current draft before it is approved.</p></div><span id="approval-status" class="tag tag-amber">Needs review</span></div><div class="approval-actions" id="approval-actions"><button class="button button-secondary danger-button" id="request-changes">Request changes</button><button class="button button-primary success-button" id="approve-content">Approve draft</button></div></section>
+        <section class="panel simple-panel"><div class="panel-heading"><div><h2>Activity timeline</h2><p>Actions from this browser session. Refreshing may reset this demo history.</p></div></div><div id="audit-timeline" class="timeline"></div></section>
+      </section>
+
+      <section class="view" id="view-analytics">
+        <div class="page-heading"><div><p class="eyebrow">INSIGHTS</p><h1>Spot patterns. Improve your copy.</h1><p class="page-subtitle">Illustrative sample data, not live analytics.</p></div></div>
+        <div class="insights-grid">
+          <section class="panel simple-panel"><div class="panel-heading"><div><h2>Common issue types</h2><p>Example distribution of flagged issues.</p></div></div><div class="bar-list"><div class="bar-row"><div><span>Unsupported claims</span><strong>42%</strong></div><div class="bar-track"><span class="bar-red" style="width:42%"></span></div></div><div class="bar-row"><div><span>Brand tone mismatch</span><strong>28%</strong></div><div class="bar-track"><span class="bar-amber" style="width:28%"></span></div></div><div class="bar-row"><div><span>Contrast issues</span><strong>18%</strong></div><div class="bar-track"><span class="bar-blue" style="width:18%"></span></div></div><div class="bar-row"><div><span>Other</span><strong>12%</strong></div><div class="bar-track"><span class="bar-purple" style="width:12%"></span></div></div></div></section>
+          <section class="panel simple-panel impact-card"><span class="stat-icon purple">✦</span><h2>Make the next draft better</h2><p>Use recurring findings to improve your brand guidelines and help writers catch issues before review.</p><button class="button button-primary" data-goto="guidelines">Review guidelines →</button></section>
+        </div>
+      </section>
+
+      <footer class="app-footer"><span>BrandGuard AI</span><span>Human-led brand review</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
